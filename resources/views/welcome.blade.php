@@ -9,7 +9,7 @@
     <body>
         <ul>
             @foreach ($books as $book)
-                <li>{{$book}}</li>
+                <li><h3>{{$book->isbn}}</h3>{{$book->title}}</li>
             @endforeach
         </ul>
     </body>

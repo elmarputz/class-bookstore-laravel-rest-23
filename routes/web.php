@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
+Route::get('/books', function () {
     $books = DB::table('books')->get();
-    return $books;
+    // dd($books);
+    return view('books.index', compact('books'));
+});
+
+Route::get('/books/{id}', function ($id) {
+    $book = DB::table('books')->find($id);
+    return view('books.show', compact('book'));
 });
