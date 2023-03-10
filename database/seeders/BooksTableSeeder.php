@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Image;
 use App\Models\User;
@@ -47,6 +48,10 @@ class BooksTableSeeder extends Seeder
         $image2->title = 'Harry Potter 2 Cover';
         $book->images()->saveMany([$image1, $image2]);
 
+        // get all author ids
+        $authors = Author::all()->pluck("id");
+        $book->authors()->sync($authors);
+        $book->save();
 
         $book1 = new Book();
         $book1->isbn = '35463424352345';
