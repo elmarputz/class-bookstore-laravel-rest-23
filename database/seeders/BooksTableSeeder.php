@@ -19,7 +19,7 @@ class BooksTableSeeder extends Seeder
     public function run()
     {
 
-        $book = Book();
+        $book = new Book();
         $book->isbn = '3453453453534';
         $book->title = Str::random(50);
         $book->subtitle = Str::random(100);
