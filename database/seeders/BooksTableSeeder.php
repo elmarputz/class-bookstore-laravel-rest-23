@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Image;
+use App\Models\User;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +31,22 @@ class BooksTableSeeder extends Seeder
         $book->description = Str::random(200);
         $book->created_at = date("Y-m-d H:i:s");
         $book->updated_at = date("Y-m-d H:i:s");
+
+        // get user
+        $user = User::first();
+        $book->user()->associate($user);
         $book->save();
+
+        // add images
+        $image1 = new Image();
+        $image1->url = 'https://m.media-amazon.com/images/I/51A9DYVP3gL._SY264_BO1,204,203,200_QL40_ML2_.jpg';
+        $image1->title = 'Harry Potter 1 Cover';
+
+        $image2 = new Image();
+        $image2->url = 'https://m.media-amazon.com/images/I/51A9DYVP3gL._SY264_BO1,204,203,200_QL40_ML2_.jpg';
+        $image2->title = 'Harry Potter 2 Cover';
+        $book->images()->saveMany([$image1, $image2]);
+
 
         $book1 = new Book();
         $book1->isbn = '35463424352345';
@@ -39,6 +57,7 @@ class BooksTableSeeder extends Seeder
         $book1->description = Str::random(200);
         $book1->created_at = date("Y-m-d H:i:s");
         $book1->updated_at = date("Y-m-d H:i:s");
+        $book1->user()->associate($user);
         $book1->save();
 
         $book2 = new Book();
@@ -50,6 +69,7 @@ class BooksTableSeeder extends Seeder
         $book2->description = Str::random(200);
         $book2->created_at = date("Y-m-d H:i:s");
         $book2->updated_at = date("Y-m-d H:i:s");
+        $book2->user()->associate($user);
         $book2->save();
 
 
