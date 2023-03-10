@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,38 +18,40 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->insert([
-            'isbn' => '239487294872349',
-            'title'=> Str::random(50),
-            'subtitle' => Str::random(100),
-            'rating' => 10,
-            'published' => new DateTime(),
-            'description' => Str::random(200),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
 
-        DB::table('books')->insert([
-            'isbn' => '42342342243243',
-            'title'=> Str::random(50),
-            'subtitle' => Str::random(100),
-            'rating' => 10,
-            'published' => new DateTime(),
-            'description' => Str::random(200),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
+        $book = Book();
+        $book->isbn = '3453453453534';
+        $book->title = Str::random(50);
+        $book->subtitle = Str::random(100);
+        $book->rating = 10;
+        $book->published = new DateTime();
+        $book->description = Str::random(200);
+        $book->created_at = date("Y-m-d H:i:s");
+        $book->updated_at = date("Y-m-d H:i:s");
+        $book->save();
 
-        DB::table('books')->insert([
-            'isbn' => '234234243423243',
-            'title'=> Str::random(50),
-            'subtitle' => Str::random(100),
-            'rating' => 10,
-            'published' => new DateTime(),
-            'description' => Str::random(200),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
+        $book1 = new Book();
+        $book1->isbn = '35463424352345';
+        $book1->title = Str::random(50);
+        $book1->subtitle = Str::random(100);
+        $book1->rating = 10;
+        $book1->published = new DateTime();
+        $book1->description = Str::random(200);
+        $book1->created_at = date("Y-m-d H:i:s");
+        $book1->updated_at = date("Y-m-d H:i:s");
+        $book1->save();
+
+        $book2 = new Book();
+        $book2->isbn = '567856785678675';
+        $book2->title = Str::random(50);
+        $book2->subtitle = Str::random(100);
+        $book2->rating = 10;
+        $book2->published = new DateTime();
+        $book2->description = Str::random(200);
+        $book2->created_at = date("Y-m-d H:i:s");
+        $book2->updated_at = date("Y-m-d H:i:s");
+        $book2->save();
+
 
     }
 }
