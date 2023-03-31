@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -44,12 +45,24 @@ class BookController extends Controller
      */
     public function save(Request $request) : JsonResponse {
 
-
         $request = $this->parseRequest($request);
         DB::beginTransaction();
 
         try {
             $book = Book::create($request->all());
+
+            if (isset($request['authors']) && is_array($request['authors'])) {
+                foreach ($request['authors'] as $author) {
+                    $author = Author::firstOrNew([
+                       'firstName' => $author['firstName'],
+                       'lastName' => $author['lastName']
+                    ]);
+                    $book->authors()->save($author);
+                }
+
+            }
+
+
             DB::commit();
             return response()->json($book, 200);
         }
