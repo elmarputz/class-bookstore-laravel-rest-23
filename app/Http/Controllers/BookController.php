@@ -96,6 +96,7 @@ class BookController extends Controller
    try {
        $book = Book::with(['authors', 'images', 'user'])
            ->where('isbn', $isbn)->first();
+
        if ($book != null) {
            $request = $this->parseRequest($request);
            $book->update($request->all());
@@ -109,6 +110,8 @@ class BookController extends Controller
                    $book->images()->save($image);
                }
            }
+
+
            //update authors
 
            $ids = [];
@@ -118,6 +121,7 @@ class BookController extends Controller
                }
            }
            $book->authors()->sync($ids);
+
            $book->save();
 
        }
@@ -134,7 +138,7 @@ class BookController extends Controller
    }
 }
 
-    
+
     public function delete(string $isbn) : JsonResponse {
        $book = Book::where('isbn', $isbn)->first();
        if ($book != null) {
@@ -144,7 +148,7 @@ class BookController extends Controller
        else
            return response()->json('book could not be deleted - it does not exist', 422);
       }
- }
+
 
 
 
