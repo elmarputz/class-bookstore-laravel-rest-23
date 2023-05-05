@@ -24,7 +24,7 @@ class BooksTableSeeder extends Seeder
     {
 
         $book = new Book();
-        $book->isbn = '3453453453534';
+        $book->isbn = '34534534869';
         $book->title = Str::random(50);
         $book->subtitle = Str::random(100);
         $book->rating = 10;
@@ -54,7 +54,7 @@ class BooksTableSeeder extends Seeder
         $book->save();
 
         $book1 = new Book();
-        $book1->isbn = '35463424352345';
+        $book1->isbn = '34534534863';
         $book1->title = Str::random(50);
         $book1->subtitle = Str::random(100);
         $book1->rating = 10;
