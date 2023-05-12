@@ -18,7 +18,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = auth()->user();
+
         if ($user == null || $user->role != "admin") {
             return response()->json(['user not in role admin'], 401);
         }
